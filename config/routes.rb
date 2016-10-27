@@ -7,7 +7,12 @@ Rails.application.routes.draw do
 
   # Example of regular route:
      get 'patients' => 'patients#index'
-     get 'patients/new' => 'patients#new'
+     post 'patients' => 'patients#create'
+     get 'patients/new' => 'patients#new', as: :new_patient
+     get 'patients/:id' => 'patients#show', as: :patient
+     get 'patient/:id' => 'patients#edit', as: :edit_patient
+     patch 'patients/:id' => 'patients#update'
+     put 'patients/:id' => 'patients#update'
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
