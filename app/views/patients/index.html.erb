@@ -1,4 +1,6 @@
 <h1>Welcome to the Patient Application</h1>
 <% @patients.each do |patient| %>
-	Last Name: <%= patient.lname %> First Name: <%= patient.fname %><br />
+	Last Name: <%= patient.lname %> First Name: <%= patient.fname %> <%= link_to "Show", patient  %> <%= link_to "Edit", edit_patient_path(patient) %> <%=  link_to("Destroy", patient_path(patient), method: :delete) %><br />
 <% end %>
+<br /><br />
+<%= link_to "New Patient", new_patient_path %>
