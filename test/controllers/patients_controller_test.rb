@@ -18,7 +18,7 @@ class PatientsControllerTest < ActionController::TestCase
   end
 
   test "should create a new patient" do
-  	assert_difference('Patient.count') do
+  	assert_difference('Patient.count', 1) do
   		post :create, patient: {lname: @patient.lname, fname: @patient.fname}
   	end
   end
@@ -30,6 +30,12 @@ class PatientsControllerTest < ActionController::TestCase
 
   test "should update patient" do
   	patch :update, id: @patient, patient: {lname: @patient.lname, fname: @patient.fname}
-  	assert_redirected_to patient_path(assign(:patient))
+  	assert_redirected_to patient_path(@patient)
+  end
+
+  test "should delete a patient" do
+  	assert_difference('Patient.count', -1) do
+  		delete :destroy, id: @patient
+  	end
   end
 end

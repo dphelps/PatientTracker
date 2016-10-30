@@ -1,4 +1,7 @@
 class PatientsController < ApplicationController
+
+	before_action  :set_patient, only: [:show, :edit, :update, :destroy]
+
 	def index
 		@patients = Patient.all
 	end
@@ -14,14 +17,27 @@ class PatientsController < ApplicationController
 	end
 
 	def show
-		@patient = Patient.find(params[:id])
 	end
 
 	def edit
-		@patient = Patient.find(params[:id])
+	end
+
+	def update
+		@patient.update(patient_params)
+		redirect_to @patient
+	end
+
+	def destroy		
+		@patient.destroy
+		redirect_to patients_path
 	end
 
 	private
+
+	def set_patient
+		@patient = Patient.find(params[:id])
+	end
+
 
 	def patient_params
 		params.require(:patient).permit(:lname, :fname)
